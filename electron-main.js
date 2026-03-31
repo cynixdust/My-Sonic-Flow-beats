@@ -1,6 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import squirrelStartup from 'electron-squirrel-startup';
+
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (squirrelStartup) {
+  app.quit();
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,15 +19,21 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      sandbox: true,
     },
   });
+
+  // Remove the default menu
+  win.setMenu(null);
 
   // In development, load from Vite dev server
   // In production, load the built index.html
   if (!app.isPackaged) {
     win.loadURL('http://localhost:3000');
   } else {
-    win.loadFile(path.join(__dirname, 'dist/index.html'));
+    // Ensure the path is correct relative to the packaged app root
+    const indexPath = path.join(__dirname, 'dist', 'index.html');
+    win.loadFile(indexPath);
   }
 }
 
