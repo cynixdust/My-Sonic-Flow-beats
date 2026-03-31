@@ -1,7 +1,9 @@
 {
-  "name": "react-example",
+  "name": "sonic-flow-beats",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A high-performance beat-making and sonic flow application.",
+  "author": "gcbannermanhyde@gmail.com",
   "type": "module",
   "main": "electron-main.js",
   "scripts": {
