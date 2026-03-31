@@ -1,0 +1,5 @@
+{
+  "name": "SonicFlow",
+  "description": "A lightweight music production web app with a modular interface.",
+  "requestFramePermissions": []
+}
