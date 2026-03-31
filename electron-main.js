@@ -9,6 +9,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
+    title: "Sonic Flow Beats",
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -17,7 +18,7 @@ function createWindow() {
 
   // In development, load from Vite dev server
   // In production, load the built index.html
-  if (process.env.NODE_ENV === 'development') {
+  if (!app.isPackaged) {
     win.loadURL('http://localhost:3000');
   } else {
     win.loadFile(path.join(__dirname, 'dist/index.html'));
